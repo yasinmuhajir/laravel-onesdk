@@ -19,9 +19,9 @@
         }
     ],
     "scripts": {
-        "test": "php ./vendor/bin/phpunit --bootstrap ./test/bootstrap.php ./test/",
-        "cs-fix": "php ./vendor/bin/php-cs-fixer fix ./src --rules=@PSR2",
-        "cs-fix:test": "php ./vendor/bin/php-cs-fixer fix ./test --rules=@PSR2"
+        "test": "php phpunit --bootstrap ./test/bootstrap.php ./test/",
+        "cs-fix": "php php-cs-fixer fix ./src --rules=@PSR2",
+        "cs-fix:test": "php php-cs-fixer fix ./test --rules=@PSR2"
     },
     "autoload": {
         "psr-4": {
