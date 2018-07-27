@@ -159,10 +159,10 @@ class ServiceProviderTest extends \Orchestra\Testbench\TestCase
      */
     public function testConfigurationIsLoaded()
     {
-        $config = $this->app['config']['app'];
+        $config = $this->app['config']['one'];
         $this->assertSame($config['client_id'], 0);
         $this->assertSame($config['client_secret'], 'some-secret-string-token');
-        $this->assertSame($config['options'], array('option1', 'option2'));
+        $this->assertSame($config['access_token'], 'eyJ0eRwVzZX9a4MMGel9yrP');
     }
 
     /**
@@ -176,7 +176,14 @@ class ServiceProviderTest extends \Orchestra\Testbench\TestCase
         return ['One\Provider\OneSdkServiceProvider'];
     }
 
-    /**
+    protected function getPackageAliases($app)
+    {
+        return [
+            'One' => \One\Provider\Facade::class,
+        ];
+    }
+
+  /**
      * Define environment setup.
      *
      * @param  \Illuminate\Foundation\Application  $app
@@ -184,8 +191,8 @@ class ServiceProviderTest extends \Orchestra\Testbench\TestCase
      */
     protected function getEnvironmentSetUp($app)
     {
-        $app['config']->set('app.client_id', 0);
-        $app['config']->set('app.client_secret', 'some-secret-string-token');
-        $app['config']->set('app.options', array('option1', 'option2'));
+        $app['config']->set('one.client_id', 0);
+        $app['config']->set('one.client_secret', 'some-secret-string-token');
+        $app['config']->set('one.access_token', 'eyJ0eRwVzZX9a4MMGel9yrP');
     }
 }
