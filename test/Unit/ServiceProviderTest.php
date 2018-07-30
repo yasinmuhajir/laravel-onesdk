@@ -1,16 +1,15 @@
-<?php
+<?php declare(strict_types=1);
+
 namespace One\Provider\Test\Unit;
+
+use Illuminate\Foundation\Application;
 
 class ServiceProviderTest extends \Orchestra\Testbench\TestCase
 {
-
     /**
      * check whether Publisher class is resolvable in the container
-     *
-     * @test
-     * @return void
      */
-    public function testPublisherResolvableInContainer()
+    public function testPublisherResolvableInContainer(): void
     {
         $publisher = $this->app->make('One\Provider\Publisher');
         $this->assertInstanceOf('One\Publisher', $publisher);
@@ -18,11 +17,8 @@ class ServiceProviderTest extends \Orchestra\Testbench\TestCase
 
     /**
      * check methods defined in Publisher class
-     *
-     * @test
-     * @return void
      */
-    public function testMethodPublisherClass()
+    public function testMethodPublisherClass(): void
     {
         $publisher = $this->app->make('One\Provider\Publisher');
         $this->assertTrue(method_exists($publisher, 'recycleToken'));
@@ -40,12 +36,8 @@ class ServiceProviderTest extends \Orchestra\Testbench\TestCase
 
     /**
      * check whether FactoryUri class is resolvable in the container
-     *
-     * @test
-     * @return void
      */
-
-    public function testFactoryUriResolvableInContainer()
+    public function testFactoryUriResolvableInContainer(): void
     {
         $uriFactory = $this->app->make('One\Provider\FactoryUri');
         $this->assertInstanceOf('One\FactoryUri', $uriFactory);
@@ -53,11 +45,8 @@ class ServiceProviderTest extends \Orchestra\Testbench\TestCase
 
     /**
      * check methods defined in FactoryUri class
-     *
-     * @test
-     * @return void
      */
-    public function testMethodFactoryUriClass()
+    public function testMethodFactoryUriClass(): void
     {
         $factoryUri = $this->app->make('One\Provider\FactoryUri');
         $this->assertTrue(method_exists($factoryUri, 'create'));
@@ -69,11 +58,8 @@ class ServiceProviderTest extends \Orchestra\Testbench\TestCase
 
     /**
      * check whether FactoryArticle class is resolvable in the container
-     *
-     * @test
-     * @return void
      */
-    public function testFactoryArticleResolvableInContainer()
+    public function testFactoryArticleResolvableInContainer(): void
     {
         $articleFactory = $this->app->make('One\Provider\FactoryArticle');
         $this->assertInstanceOf('One\FactoryArticle', $articleFactory);
@@ -81,11 +67,8 @@ class ServiceProviderTest extends \Orchestra\Testbench\TestCase
 
     /**
      * check methods defined in FactoryArticle class
-     *
-     * @test
-     * @return void
      */
-    public function testMethodFactoryArticleClass()
+    public function testMethodFactoryArticleClass(): void
     {
         $factoryArticle = $this->app->make('One\Provider\FactoryArticle');
         $this->assertTrue(method_exists($factoryArticle, 'create'));
@@ -99,11 +82,8 @@ class ServiceProviderTest extends \Orchestra\Testbench\TestCase
 
     /**
      * check whether FactoryGallery class is resolvable in the container
-     *
-     * @test
-     * @return void
      */
-    public function testFactoryGalleryResolvableInContainer()
+    public function testFactoryGalleryResolvableInContainer(): void
     {
         $galleryFactory = $this->app->make('One\Provider\FactoryGallery');
         $this->assertInstanceOf('One\FactoryGallery', $galleryFactory);
@@ -111,11 +91,8 @@ class ServiceProviderTest extends \Orchestra\Testbench\TestCase
 
     /**
      * check methods defined in FactoryGallery class
-     *
-     * @test
-     * @return void
      */
-    public function testMethodFactoryGalleryClass()
+    public function testMethodFactoryGalleryClass(): void
     {
         $factoryGallery = $this->app->make('One\Provider\FactoryGallery');
         $this->assertTrue(method_exists($factoryGallery, 'create'));
@@ -128,12 +105,8 @@ class ServiceProviderTest extends \Orchestra\Testbench\TestCase
 
     /**
      * check whether FactoryPhoto class is resolvable in the container
-     *
-     * @test
-     * @return void
      */
-
-    public function testFactoryPhotoResolvableInContainer()
+    public function testFactoryPhotoResolvableInContainer(): void
     {
         $photoFactory = $this->app->make('One\Provider\FactoryPhoto');
         $this->assertInstanceOf('One\FactoryPhoto', $photoFactory);
@@ -141,11 +114,8 @@ class ServiceProviderTest extends \Orchestra\Testbench\TestCase
 
     /**
      * check methods defined in FactoryPhoto class
-     *
-     * @test
-     * @return void
      */
-    public function testMethodFactoryPhotoClass()
+    public function testMethodFactoryPhotoClass(): void
     {
         $factoryPhoto = $this->app->make('One\Provider\FactoryPhoto');
         $this->assertTrue(method_exists($factoryPhoto, 'create'));
@@ -155,9 +125,9 @@ class ServiceProviderTest extends \Orchestra\Testbench\TestCase
     }
 
     /**
-     * @test
+     * test config
      */
-    public function testConfigurationIsLoaded()
+    public function testConfigurationIsLoaded(): void
     {
         $config = $this->app['config']['one'];
         $this->assertSame($config['client_id'], 0);
@@ -166,30 +136,27 @@ class ServiceProviderTest extends \Orchestra\Testbench\TestCase
     }
 
     /**
-     * Load the service provider.
-     *
-     * @param  \Illuminate\Foundation\Application  $app
-     * @return array
+     * @inheritDoc
      */
-    protected function getPackageProviders($app)
+    protected function getPackageProviders(): array
     {
         return ['One\Provider\OneSdkServiceProvider'];
     }
 
-    protected function getPackageAliases($app)
+    /**
+     * @inheritDoc
+     */
+    protected function getPackageAliases(): array
     {
         return [
             'One' => \One\Provider\Facade::class,
         ];
     }
 
-  /**
-     * Define environment setup.
-     *
-     * @param  \Illuminate\Foundation\Application  $app
-     * @return void
+    /**
+     * @inheritDoc
      */
-    protected function getEnvironmentSetUp($app)
+    protected function getEnvironmentSetUp(Application $app): void
     {
         $app['config']->set('one.client_id', 0);
         $app['config']->set('one.client_secret', 'some-secret-string-token');

@@ -1,16 +1,16 @@
 {
     "name": "kly/laravel-onesdk",
     "description": "Laravel service provide for onesdk app php SDK",
-    "type": "metapackage",
+    "type": "library",
     "require": {
         "kly/onesdk": "^1.1",
         "illuminate/support": "^5.5"
     },
     "require-dev": {
         "phpunit/phpunit": "^6.0|^7.0",
-        "friendsofphp/php-cs-fixer": "^2.0",
         "laravel/laravel": "^5.5",
-        "orchestra/testbench": "~3.0"
+        "orchestra/testbench": "~3.0",
+        "symplify/easy-coding-standard": "^4.5"
     },
     "license": "MIT",
     "authors": [
@@ -21,8 +21,8 @@
     ],
     "scripts": {
         "test": "phpunit --bootstrap ./test/bootstrap.php ./test/",
-        "cs-fix": "php-cs-fixer fix ./src --rules=@PSR2",
-        "cs-fix:test": "php-cs-fixer fix ./test --rules=@PSR2"
+        "cs-check": "ecs check src test",
+        "cs-fix": "ecs check src test --fix"
     },
     "autoload": {
         "psr-4": {

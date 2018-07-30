@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace One\Provider;
 
@@ -11,13 +11,10 @@ use One\Publisher;
 
 class OneSdkServiceProvider extends ServiceProvider
 {
-
     /**
      * Register Onesdk instance in the container.
-     *
-     * @return void
      */
-    public function register()
+    public function register(): void
     {
         $this->registerPublisher();
         $this->registerFactoryUri();
@@ -28,10 +25,8 @@ class OneSdkServiceProvider extends ServiceProvider
 
     /**
      * Register Publisher class instance in the container.
-     *
-     * @return void
      */
-    public function registerPublisher()
+    public function registerPublisher(): void
     {
         $this->app->bind('One\Provider\Publisher', function ($app) {
             return new Publisher(
@@ -43,10 +38,8 @@ class OneSdkServiceProvider extends ServiceProvider
 
     /**
      * Register FactoryUri class instance in the container.
-     *
-     * @return void
      */
-    public function registerFactoryUri()
+    public function registerFactoryUri(): void
     {
         $this->app->bind('One\Provider\FactoryUri', function () {
             return new FactoryUri();
@@ -55,10 +48,8 @@ class OneSdkServiceProvider extends ServiceProvider
 
     /**
      * Register FactoryArticle class instance in the container.
-     *
-     * @return void
      */
-    public function registerFactoryArticle()
+    public function registerFactoryArticle(): void
     {
         $this->app->bind('One\Provider\FactoryArticle', function () {
             return new FactoryArticle();
@@ -67,10 +58,8 @@ class OneSdkServiceProvider extends ServiceProvider
 
     /**
      * Register FactoryGallery class instance in the container.
-     *
-     * @return void
      */
-    public function registerFactoryGallery()
+    public function registerFactoryGallery(): void
     {
         $this->app->bind('One\Provider\FactoryGallery', function () {
             return new FactoryGallery();
@@ -79,10 +68,8 @@ class OneSdkServiceProvider extends ServiceProvider
 
     /**
      * Register FactoryPhoto class instance in the container.
-     *
-     * @return void
      */
-    public function registerFactoryPhoto()
+    public function registerFactoryPhoto(): void
     {
         $this->app->bind('One\Provider\FactoryPhoto', function () {
             return new FactoryPhoto();
