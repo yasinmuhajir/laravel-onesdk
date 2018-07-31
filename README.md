@@ -6,17 +6,14 @@ One APP SDK to laravel binding service provider
 
 If you are using composer you could get it with `composer require kly/laravel-onesdk` and you are all set. Load up the autoloader and Call the classes or factory you need.
 
-## Register the Service Provider & Aliases
-Add the Service Provider & Aliases to your application's config/app.php file. Must be added to the providers array.
+## Register the Service Provider
+Add the Service Provider to your application's config/app.php file. Must be added to the providers array.
 
 ```
 'providers' => [
     One\Provider\OneSdkServiceProvider::class
 ]
 
-'aliases' => [
-    'One' => \One\Provider\Facade::class
-]
 ```
 
 ## Publish the Package configuration
@@ -34,27 +31,12 @@ php artisan vendor:publish
 ```
 ## Usage
 ```
-One::FactoryUri('https://username:password@www.example.com:85/kerap/254?page=1#idkomentar');
-One::FactoryArticle(
-                array(
-                  'title' => 'Recusandae natus ',
-                  'body' => 'Nulla labore earum. Perspiciatis voluptatem quidem error. ', 
-                  'source' => 'http://example.com/url-detail.html',
-                  'unique_id' => 'dummy-1', 
-                  'type_id' => 2,
-                  'category_id' => 1,
-                  'reporter' => 'earum'
-                     )
-                   );
+use Config;
+use One\FactoryUri;
+use One\Publisher;
 
- 
-One::FactoryGallery(
-            'Est illum cupiditate quidem alias.',
-            1,
-            'http://jordan.biz/',
-            'https://www.roemer.de/',
-            'Ipsam quidem ut tempora incidunt officia sunt.'
-            );
+new Publisher( Config::get('one.client_id'), Config::get('one.client_secret') );
+new FactoryUri('https://username:password@www.example.com:85/kerap/254?page=1#idkomentar');
 
 
 ```
