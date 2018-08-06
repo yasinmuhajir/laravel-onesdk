@@ -3,7 +3,7 @@
     "description": "Laravel service provide for onesdk app php SDK",
     "type": "library",
     "require": {
-        "kly/onesdk": "^1.1",
+        "kly/onesdk": "^2.0",
         "illuminate/support": "^5.5"
     },
     "require-dev": {
@@ -17,6 +17,11 @@
         {
             "name": "Charis",
             "email": "me@chars.me"
+        },
+        {
+            "name": "Denta Zamzam Yasin Muhajir",
+            "email": "denta.muhajir@kly.id",
+            "role": "Developer"
         }
     ],
     "scripts": {
