@@ -30,8 +30,8 @@ class OneSdkServiceProvider extends ServiceProvider
     {
         $this->app->bind('One\Provider\Publisher', function ($app) {
             return new Publisher(
-                $app['config']['one.client_id'],
-                $app['config']['one.client_secret']
+                (string) $app['config']['one.client_id'],
+                (string) $app['config']['one.client_secret']
             );
         });
     }
