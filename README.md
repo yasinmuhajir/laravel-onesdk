@@ -35,8 +35,16 @@ use Config;
 use One\FactoryUri;
 use One\Publisher;
 
-new Publisher( Config::get('one.client_id'), Config::get('one.client_secret') );
-new FactoryUri('https://username:password@www.example.com:85/kerap/254?page=1#idkomentar');
+$publisher = new Publisher(
+			Config::get('one.client_id'),
+			Config::get('one.client_secret'),
+			array(
+				'access_token' => Config::get('one.access_token'),
+			)
+		); 
+$publisher->listArticle();
+
+FactoryUri::create('https://username:password@www.example.com:85/kerap/254?page=1#idkomentar');
 
 
 ```
